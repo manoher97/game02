@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesu Number</title>
+</head>
+<style>
+    body {
+        
+        background-color: yellow;
+    }
+
+    .div1{
+        font-size: 4vh;
+        color: red;
+    }
+    .div1 button {
+        padding: 20px;
+        font-size: 4vh;
+    }
+    .div1 aside{
+        text-align: end;
+        margin-right: 10%;
+    }
+
+    .div2 {
+        text-align: center;
+
+    }
+
+    .div2 h1 {
+        margin-top: 5%;
+        font-size: 8vh;
+    }
+
+    .div2 span {
+        font-size: 10vh;
+        border: 1px solid transparent;
+        padding: 10px 40px;
+        background-color: rebeccapurple;
+        color: white;
+    }
+
+    .div2 hr {
+        margin-top: -3%;
+        padding: 10px;
+        background-color: aqua;
+        border: transparent;
+    }
+
+    .div2 aside {
+        margin-left: 30%;
+        font-size: 4vh;
+    }
+
+    .div3 {
+        margin: 5%;
+    }
+
+    .div3 span {
+        text-align: end;
+        font-size: 4vh;
+    }
+
+    .div3 input {
+        width: 5%;
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 3vh;
+        background-color: rgb(10, 135, 238);
+    }
+</style>
+
+<body>
+    <div class="div1">
+        <button onclick="reFresh()">Refresh</button>
+        <aside>Einter One Number Beteewn 1-20</aside>
+    </div>
+    <div class="div2">
+        <h1>Guess The Number</h1>
+        <span id="hide"> &#x3f</span>
+        <hr>
+        <aside class="errNot">Hi Welcome...</aside>
+    </div>
+    <section class="div3">
+        <div>
+            <input type="number" id="take_num"><br>
+            <button onclick="validatenum()">Check</button>
+        </div>
+        <span>
+            <aside class="c">Chances:20</aside>
+            <aside class="h">High score:</aside>
+        </span>
+    </section>
+    <script>
+
+
+
+        var x = Math.floor((Math.random() * 20) + 1);
+        
+        function reFresh() {
+            document.getElementById('hide').innerHTML = `&#x3f`;
+            document.querySelector('.h').innerHTML = `High score:${scr}`;
+            document.querySelector('body').style.backgroundColor = 'yellow';
+            document.querySelector('.errNot').innerHTML = "Hi Welcome..";
+            scr = 20;
+            document.querySelector('.c').innerHTML = `Chances:${scr}`;
+            x = Math.floor((Math.random() * 20) + 1);
+        }
+        let scr = 20;
+
+        function validatenum() {
+            const a = document.getElementById('take_num').value;
+            if (a == x) {
+                document.getElementById('hide').innerHTML = `${x}`;
+                document.querySelector('.errNot').innerHTML = "Currect Number &#x2713";
+                document.querySelector('.c').innerHTML = `Chances:${scr}`;
+                document.querySelector('.h').innerHTML = `High score:${scr}`;
+                document.querySelector('body').style.backgroundColor = 'green';
+            }
+            else if (a < x) {
+                document.querySelector('.errNot').innerHTML = "It is too low &#x2715";
+                scr = scr - 1;
+                document.querySelector('.c').innerHTML = `Chances:${scr}`;
+            }
+            else if (a > x) {
+                document.querySelector('.errNot').innerHTML = "It is too high &#x2715";
+                scr = scr - 1;
+                document.querySelector('.c').innerHTML = `Chances:${scr}`;
+            }
+            else {
+                document.querySelector('.errNot').innerHTML = "You Loss Your Game &#x2715";
+            }
+            if (scr <= 0) {
+                document.querySelector('.errNot').innerHTML = "You Loss Your Game &#x2715";
+                document.querySelector('body').style.backgroundColor = 'red';
+                scr = 20;
+                document.querySelector('.c').innerHTML = `Chances:${scr}`;
+                validatenum()
+            }
+            if (a == 0) {
+                document.querySelector('.errNot').innerHTML = "Please Enter Number";
+                document.querySelector('.c').innerHTML = `Chances:${scr}`;
+            }
+
+        }
+        
+
+
+    </script>
+</body>
+
+</html>
